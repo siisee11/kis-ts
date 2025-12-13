@@ -14,7 +14,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build:playground": "vite build --config playground/vite.config.ts",
     "preview": "vite preview --config playground/vite.config.ts",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "bun run build",
+    "test": "vitest"
   },
   "files": [
     "dist"
@@ -37,11 +38,13 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "concurrently": "9.2.1",
+    "nock": "^14.0.10",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "vite": "^7.2.7",
-    "vite-plugin-node-polyfills": "^0.24.0"
+    "vite-plugin-node-polyfills": "^0.24.0",
+    "vitest": "^4.0.15"
   }
 }
