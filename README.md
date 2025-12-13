@@ -56,4 +56,4 @@ main();
 | REST | 주식기본조회 | GET | /uapi/domestic-stock/v1/quotations/search-stock-info | ✅ |
 | ... | ... | ... | ... | ... |
 
-(See full list in docs or type definitions)
+[(See full list in docs or type definitions)](./IMPLEMENTATION_STATUS.md)
