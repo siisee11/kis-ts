@@ -3,7 +3,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@jasset/kis.svg)](https://www.npmjs.com/package/@jasset/kis)
 
-Typescript client for Korea Investment & Securities (KIS) API.
+Typescript client for KIS API(KoreaInvestment OpenAPI).
 
 ## Installation
 
