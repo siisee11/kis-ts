@@ -113,9 +113,9 @@ export class KisOverseasClient {
     public trading: KisOverseasTrading;
 
     constructor(private client: KisClient) {
-        this.quotations = new KisOverseasQuotations(client);
-        this.ranking = new KisOverseasRanking(client);
-        this.trading = new KisOverseasTrading(client);
+        this.quotations = new KisOverseasQuotations(this.client);
+        this.ranking = new KisOverseasRanking(this.client);
+        this.trading = new KisOverseasTrading(this.client);
     }
 }
 
