@@ -50,6 +50,16 @@ export class KisClient {
     this.overseas = new KisOverseasClient(this);
   }
 
+  async ensureAccessToken(): Promise<string> {
+    if (this.accessToken) {
+      return this.accessToken;
+    }
+
+    const { accessToken } = await this.getAccessToken();
+    this.accessToken = accessToken;
+    return accessToken;
+  }
+
   setAccessToken(token: string) {
     this.accessToken = token;
   }

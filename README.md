@@ -24,12 +24,13 @@ async function main() {
   // 0. Auto-credential setup if using env vars
   // client.setCredentials({ appKey: "...", appSecret: "..." });
 
-  // 1. Get Access Token
-  // Can pass arguments if needed, otherwise uses credentials on client
-  const { access_token } = await client.getAccessToken();
-  client.setAccessToken(access_token);
+  // 1. (Optional) Get Access Token manually
+  // The client will automatically fetch and reuse the token if not set.
+  // const { access_token } = await client.getAccessToken();
+  // client.setAccessToken(access_token);
 
   // 2. Call API (e.g. Check Domestic Holiday)
+  // Token is automatically handled!
   // New: APIs are organized under namespaces
   const result = await client.domestic.checkHoliday({
     bassDt: "20231225",

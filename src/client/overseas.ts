@@ -104,91 +104,88 @@ import {
 export class KisOverseasClient {
     constructor(private client: KisClient) { }
 
-    private get context() {
-        const token = this.client.getAccessTokenValue();
-        if (!token) {
-            throw new Error("Access token is not set. Call client.setAccessToken() first.");
-        }
+    private async getContext() {
+        const token = await this.client.ensureAccessToken();
         return this.client.getOverseasContext(token);
     }
 
     async fetchOverseasDailyPrice(request: FetchOverseasDailyPriceRequest): Promise<FetchOverseasDailyPriceResponse> {
-        return fetchOverseasDailyPrice(this.context, request);
+        return fetchOverseasDailyPrice(await this.getContext(), request);
     }
 
     async fetchOverseasPrice(request: FetchOverseasPriceRequest): Promise<FetchOverseasPriceResponse> {
-        return fetchOverseasPrice(this.context, request);
+        return fetchOverseasPrice(await this.getContext(), request);
     }
 
     async searchOverseasStock(request: SearchOverseasStockRequest): Promise<SearchOverseasStockResponse> {
-        return searchOverseasStock(this.context, request);
+        return searchOverseasStock(await this.getContext(), request);
     }
 
     async fetchOverseasMarketCapRanking(request: FetchOverseasMarketCapRankingRequest): Promise<FetchOverseasMarketCapRankingResponse> {
-        return fetchOverseasMarketCapRanking(this.context, request);
+        return fetchOverseasMarketCapRanking(await this.getContext(), request);
     }
 
     async fetchOverseasNewHighlow(request: FetchOverseasNewHighlowRequest): Promise<FetchOverseasNewHighlowResponse> {
-        return fetchOverseasNewHighlow(this.context, request);
+        return fetchOverseasNewHighlow(await this.getContext(), request);
     }
 
     async placeOverseasDaytimeOrder(request: PlaceOverseasDaytimeOrderRequest): Promise<PlaceOverseasDaytimeOrderResponse> {
-        return placeOverseasDaytimeOrder(this.context, request);
+        return placeOverseasDaytimeOrder(await this.getContext(), request);
     }
 
     async reviseCancelOverseasDaytimeOrder(request: ReviseCancelOverseasDaytimeOrderRequest): Promise<ReviseCancelOverseasDaytimeOrderResponse> {
-        return reviseCancelOverseasDaytimeOrder(this.context, request);
+        return reviseCancelOverseasDaytimeOrder(await this.getContext(), request);
     }
 
     async inquireOverseasBalance(request: InquireOverseasBalanceRequest): Promise<InquireOverseasBalanceResponse> {
-        return inquireOverseasBalance(this.context, request);
+        return inquireOverseasBalance(await this.getContext(), request);
     }
 
     async inquireOverseasCcnl(request: InquireOverseasCcnlRequest): Promise<InquireOverseasCcnlResponse> {
-        return inquireOverseasCcnl(this.context, request);
+        return inquireOverseasCcnl(await this.getContext(), request);
     }
 
     async inquireOverseasNccs(request: InquireOverseasNccsRequest): Promise<InquireOverseasNccsResponse> {
-        return inquireOverseasNccs(this.context, request);
+        return inquireOverseasNccs(await this.getContext(), request);
     }
 
     async inquireOverseasPaymtStdrBalance(request: InquireOverseasPaymtStdrBalanceRequest): Promise<InquireOverseasPaymtStdrBalanceResponse> {
-        return inquireOverseasPaymtStdrBalance(this.context, request);
+        return inquireOverseasPaymtStdrBalance(await this.getContext(), request);
     }
 
     async inquireOverseasPeriodProfit(request: InquireOverseasPeriodProfitRequest): Promise<InquireOverseasPeriodProfitResponse> {
-        return inquireOverseasPeriodProfit(this.context, request);
+        return inquireOverseasPeriodProfit(await this.getContext(), request);
     }
 
     async inquireOverseasPeriodTrans(request: InquireOverseasPeriodTransRequest): Promise<InquireOverseasPeriodTransResponse> {
-        return inquireOverseasPeriodTrans(this.context, request);
+        return inquireOverseasPeriodTrans(await this.getContext(), request);
     }
 
     async inquireOverseasPresentBalance(request: InquireOverseasPresentBalanceRequest): Promise<InquireOverseasPresentBalanceResponse> {
-        return inquireOverseasPresentBalance(this.context, request);
+        return inquireOverseasPresentBalance(await this.getContext(), request);
     }
 
     async inquireOverseasPsamount(request: InquireOverseasPsamountRequest): Promise<InquireOverseasPsamountResponse> {
-        return inquireOverseasPsamount(this.context, request);
+        return inquireOverseasPsamount(await this.getContext(), request);
     }
 
     async placeOverseasOrder(request: PlaceOverseasOrderRequest): Promise<PlaceOverseasOrderResponse> {
-        return placeOverseasOrder(this.context, request);
+        return placeOverseasOrder(await this.getContext(), request);
     }
 
     async placeOverseasReserveOrder(request: PlaceOverseasReserveOrderRequest): Promise<PlaceOverseasReserveOrderResponse> {
-        return placeOverseasReserveOrder(this.context, request);
+        return placeOverseasReserveOrder(await this.getContext(), request);
     }
 
     async cancelOverseasReserveOrder(request: CancelOverseasReserveOrderRequest): Promise<CancelOverseasReserveOrderResponse> {
-        return cancelOverseasReserveOrder(this.context, request);
+        return cancelOverseasReserveOrder(await this.getContext(), request);
     }
 
     async listOverseasReserveOrders(request: ListOverseasReserveOrdersRequest): Promise<ListOverseasReserveOrdersResponse> {
-        return listOverseasReserveOrders(this.context, request);
+        return listOverseasReserveOrders(await this.getContext(), request);
     }
 
     async reviseCancelOverseasOrder(request: ReviseCancelOverseasOrderRequest): Promise<ReviseCancelOverseasOrderResponse> {
-        return reviseCancelOverseasOrder(this.context, request);
+        return reviseCancelOverseasOrder(await this.getContext(), request);
     }
 }
