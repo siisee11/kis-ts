@@ -14,6 +14,8 @@ import type {
   KisWebsocketToken,
   KisWebsocketTokenRequest,
 } from "../types";
+import { KisDomesticClient } from "./domestic";
+import { KisOverseasClient } from "./overseas";
 
 export class KisClient {
   private appKey?: string;
@@ -21,6 +23,10 @@ export class KisClient {
   private env: KisEnvironment;
   private realHttp: AxiosInstance;
   private demoHttp: AxiosInstance;
+  private accessToken?: string;
+
+  public domestic: KisDomesticClient;
+  public overseas: KisOverseasClient;
 
   constructor(options: KisClientOptions = {}) {
     this.appKey = options.appKey ?? process.env.KIS_APP_KEY;
@@ -40,6 +46,16 @@ export class KisClient {
         "Content-Type": "application/json",
       },
     });
+    this.domestic = new KisDomesticClient(this);
+    this.overseas = new KisOverseasClient(this);
+  }
+
+  setAccessToken(token: string) {
+    this.accessToken = token;
+  }
+
+  getAccessTokenValue(): string | undefined {
+    return this.accessToken;
   }
 
   setCredentials(credentials: KisCredentials) {
