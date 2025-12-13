@@ -58,3 +58,8 @@ main();
 | ... | ... | ... | ... | ... |
 
 [(See full list in docs or type definitions)](./IMPLEMENTATION_STATUS.md)
+
+
+## Playground
+
+playground is demo client and server for example.

@@ -107,7 +107,6 @@ app.post("/overseas/balance", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.overseas.inquireOverseasBalance({
@@ -142,7 +141,6 @@ app.post("/overseas/order", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.overseas.placeOverseasOrder({
@@ -180,7 +178,6 @@ app.post("/domestic/holiday", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.domestic.checkHoliday({
@@ -215,7 +212,6 @@ app.post("/overseas/price", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.overseas.fetchOverseasPrice({
@@ -251,7 +247,6 @@ app.post("/overseas/daily-price", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.overseas.fetchOverseasDailyPrice({
@@ -284,7 +279,6 @@ app.post("/overseas/search", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.overseas.searchOverseasStock({
@@ -320,7 +314,6 @@ app.post("/domestic/search-info", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.domestic.searchInfo({
@@ -356,7 +349,6 @@ app.post("/domestic/search-stock-info", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  // client.setAccessToken(accessToken); // Auto-managed now!
 
   try {
     const result = await client.domestic.searchStockInfo({
