@@ -48,6 +48,9 @@ main();
 - **Auto Pagination**: Automatically fetch all pages for paginated APIs (can be disabled).
 - **Environment Support**: Easy switch between Real and Demo environments.
 - **Client Methods**: APIs accessible via `client.domestic` and `client.overseas`.
+- **JSDoc Support**: Rich JSDoc comments allow you to see tooltips and descriptions directly in your IDE when hovering over methods and types.
+
+  ![JSDoc Tooltip](public/tooltip.png)
 
 ## API Status
 

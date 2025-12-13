@@ -45,6 +45,9 @@ main();
 - **자동 페이지네이션**: 페이지네이션된 API에 대해 모든 페이지를 자동으로 가져옵니다(비활성화 가능).
 - **환경 지원**: 실전(Real) 및 모의(Demo) 환경 간 전환이 쉽습니다.
 - **클라이언트 메서드**: `client.domestic` 및 `client.overseas`를 통해 API에 접근할 수 있습니다.
+- **JSDoc 지원**: 풍부한 JSDoc 주석을 통해 마우스를 올리면 IDE에서 직접 툴팁과 설명을 확인할 수 있습니다.
+
+  ![JSDoc Tooltip](public/tooltip.png)
 
 ## API 현황
 
