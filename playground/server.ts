@@ -27,15 +27,15 @@ type OrderPayload = AuthPayload & {
   cano: string;
   acntPrdtCd: string;
   ovrsExcgCd:
-    | "NASD"
-    | "NYSE"
-    | "AMEX"
-    | "SEHK"
-    | "SHAA"
-    | "SZAA"
-    | "TKSE"
-    | "HASE"
-    | "VNSE";
+  | "NASD"
+  | "NYSE"
+  | "AMEX"
+  | "SEHK"
+  | "SHAA"
+  | "SZAA"
+  | "TKSE"
+  | "HASE"
+  | "VNSE";
   pdno: string;
   ordQty: string;
   ovrsOrdUnpr: string;
@@ -107,16 +107,14 @@ app.post("/overseas/balance", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env });
-  const ctx = client.getOverseasContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { inquireOverseasBalance } = await import("@jasset/kis");
-    const result = await inquireOverseasBalance(ctx, {
+    const result = await client.overseas.inquireOverseasBalance({
       cano: body.cano,
       acntPrdtCd: body.acntPrdtCd,
       ovrsExcgCd: body.ovrsExcgCd,
       trCrcyCd: body.trCrcyCd,
-      env,
     });
     return c.json({ balance: result });
   } catch (error) {
@@ -144,11 +142,10 @@ app.post("/overseas/order", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env });
-  const ctx = client.getOverseasContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { placeOverseasOrder } = await import("@jasset/kis");
-    const result = await placeOverseasOrder(ctx, {
+    const result = await client.overseas.placeOverseasOrder({
       cano: body.cano,
       acntPrdtCd: body.acntPrdtCd,
       ovrsExcgCd: body.ovrsExcgCd,
@@ -157,7 +154,6 @@ app.post("/overseas/order", async (c) => {
       ovrsOrdUnpr: body.ovrsOrdUnpr,
       ordDv: body.ordDv,
       ordDvsn: body.ordDvsn,
-      env,
     });
     return c.json({ order: result });
   } catch (error) {
@@ -184,11 +180,10 @@ app.post("/domestic/holiday", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getDomesticContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { checkHoliday } = await import("@jasset/kis");
-    const result = await checkHoliday(ctx, {
+    const result = await client.domestic.checkHoliday({
       bassDt: body.bassDt,
     });
     return c.json({ holidays: result });
@@ -220,11 +215,10 @@ app.post("/overseas/price", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getOverseasContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { fetchOverseasPrice } = await import("@jasset/kis");
-    const result = await fetchOverseasPrice(ctx, {
+    const result = await client.overseas.fetchOverseasPrice({
       excd: body.excd,
       symb: body.symb.trim().toUpperCase(),
     });
@@ -257,11 +251,10 @@ app.post("/overseas/daily-price", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getOverseasContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { fetchOverseasDailyPrice } = await import("@jasset/kis");
-    const result = await fetchOverseasDailyPrice(ctx, {
+    const result = await client.overseas.fetchOverseasDailyPrice({
       excd: body.excd,
       symb: body.symb.trim().toUpperCase(),
       gubn: "0",
@@ -291,11 +284,10 @@ app.post("/overseas/search", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getOverseasContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { searchOverseasStock } = await import("@jasset/kis");
-    const result = await searchOverseasStock(ctx, {
+    const result = await client.overseas.searchOverseasStock({
       prdtTypeCd: "512",
       pdno: body.keyword?.trim() ?? "",
     });
@@ -328,11 +320,10 @@ app.post("/domestic/search-info", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getDomesticContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { searchInfo } = await import("@jasset/kis");
-    const result = await searchInfo(ctx, {
+    const result = await client.domestic.searchInfo({
       pdno: body.pdno.trim(),
       prdtTypeCd: body.prdtTypeCd ?? "300",
     });
@@ -365,11 +356,10 @@ app.post("/domestic/search-stock-info", async (c) => {
   }
 
   const client = createKisClient({ appKey, appSecret, env: "real" });
-  const ctx = client.getDomesticContext(accessToken);
+  client.setAccessToken(accessToken);
 
   try {
-    const { searchStockInfo } = await import("@jasset/kis");
-    const result = await searchStockInfo(ctx, {
+    const result = await client.domestic.searchStockInfo({
       prdtTypeCd: body.prdtTypeCd ?? "300",
       pdno: body.pdno.trim(),
     });
