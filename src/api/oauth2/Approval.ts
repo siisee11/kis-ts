@@ -25,10 +25,6 @@ export type RequestWebsocketApprovalKeyRequest = {
      * @default client_credentials
      */
     grant_type?: string;
-    /**
-     * 법인 인가된 토큰 (선택)
-     */
-    token?: string;
 };
 
 export type RequestWebsocketApprovalKeyResponse = {
@@ -68,10 +64,6 @@ export const requestWebsocketApprovalKey = async (
         appkey: credentials.appKey,
         secretkey: credentials.appSecret,
     };
-
-    if (request.token) {
-        payload.token = request.token;
-    }
 
     try {
         const response = await http.post<RequestWebsocketApprovalKeyResponse>(

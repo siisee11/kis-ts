@@ -1,13 +1,6 @@
 import { type KisOverseasContext, overseasGet, toArray } from "../helpers";
 
-/**
- * 해외주식 현재체결가 [v1_해외주식-009]
- *
- * 해외주식종목의 현재체결가를 확인하는 API 입니다.
- * 해외주식 시세는 무료시세(지연체결가)만이 제공되며, API로는 유료시세(실시간체결가)를 받아보실 수 없습니다.
- *
- * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/price
- */
+
 export type FetchOverseasPriceRequest = {
   /**
    * 거래소코드
@@ -69,9 +62,21 @@ export type FetchOverseasPriceResponse = {
   output: OverseasPriceOutput;
 };
 
+type OverseasPriceApiResponseBody = {
+  rt_cd: string;
+  msg_cd: string;
+  msg1: string;
+  output: OverseasPriceOutput | OverseasPriceOutput[];
+};
+
 /**
- * 해외주식 현재체결가 조회
+ * 해외주식 현재체결가 [v1_해외주식-009]
  *
+ * 해외주식종목의 현재체결가를 확인하는 API 입니다.
+ * 해외주식 시세는 무료시세(지연체결가)만이 제공되며, API로는 유료시세(실시간체결가)를 받아보실 수 없습니다.
+ *
+ * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/price
+ * 
  * @param ctx KIS Context
  * @param request 요청 정보 (거래소코드, 종목코드)
  * @returns 현재가 정보
@@ -82,7 +87,7 @@ export const fetchOverseasPrice = async (
 ): Promise<FetchOverseasPriceResponse> => {
   const trId = "HHDFS00000300";
 
-  const response = await overseasGet<Record<string, unknown>>(ctx, {
+  const response = await overseasGet<OverseasPriceApiResponseBody>(ctx, {
     path: "/uapi/overseas-price/v1/quotations/price",
     trId,
     params: {
@@ -93,13 +98,13 @@ export const fetchOverseasPrice = async (
     errorMessage: "Failed to fetch overseas stock price.",
   });
 
-  const body = (response.data ?? {}) as Record<string, unknown>;
+  const body = response.data;
   const [output] = toArray<OverseasPriceOutput>(body.output);
 
   return {
-    rt_cd: (body.rt_cd as string) ?? "",
-    msg_cd: (body.msg_cd as string) ?? "",
-    msg1: (body.msg1 as string) ?? "",
+    rt_cd: body.rt_cd ?? "",
+    msg_cd: body.msg_cd ?? "",
+    msg1: body.msg1 ?? "",
     output: output ?? {},
   };
 };
