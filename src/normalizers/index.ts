@@ -1,4 +1,4 @@
-import type { KisAuthToken, KisWebsocketToken } from "../types";
+import type { KisAuthToken } from "../types";
 
 export type KisRawAuthToken = {
   access_token?: string;
@@ -6,12 +6,6 @@ export type KisRawAuthToken = {
   expires_in?: number | string;
   scope?: string;
   timestamp?: number | string;
-};
-
-export type KisRawWebsocketToken = {
-  approval_key?: string;
-  access_token?: string;
-  expires_in?: number | string;
 };
 
 export const toNumber = (value: unknown): number => {
@@ -27,13 +21,4 @@ export const normalizeAuthToken = (raw: KisRawAuthToken): KisAuthToken => ({
   expiresIn: toNumber(raw.expires_in ?? 0),
   scope: raw.scope,
   issuedAt: raw.timestamp ? toNumber(raw.timestamp) : Date.now(),
-});
-
-export const normalizeWebsocketToken = (
-  raw: KisRawWebsocketToken,
-): KisWebsocketToken => ({
-  approvalKey: raw.approval_key ?? "",
-  accessToken: raw.access_token,
-  expiresIn:
-    raw.expires_in === undefined ? undefined : toNumber(raw.expires_in),
 });

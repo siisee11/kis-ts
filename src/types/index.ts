@@ -28,17 +28,4 @@ export type KisAuthTokenResponse = {
   token: KisAuthToken;
 };
 
-export type KisWebsocketTokenRequest = {
-  grantType?: string;
-  token?: string;
-};
 
-export type KisWebsocketToken = {
-  approvalKey: string;
-  accessToken?: string;
-  expiresIn?: number;
-};
-
-export type KisWebsocketTokenResponse = {
-  websocket: KisWebsocketToken;
-};

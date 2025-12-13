@@ -1,5 +1,9 @@
 import axios, { type AxiosInstance } from "axios";
-import { requestWebsocketApprovalKey } from "../api/oauth2/Approval";
+import {
+  requestWebsocketApprovalKey,
+  type RequestWebsocketApprovalKeyRequest,
+  type RequestWebsocketApprovalKeyResponse,
+} from "../api/oauth2/Approval";
 import { requestAccessToken } from "../api/oauth2/tokenP";
 import type { KisDomesticContext } from "../api/domestic-stock";
 import type { KisOverseasContext } from "../api/overseas-stock";
@@ -11,8 +15,6 @@ import type {
   KisClientOptions,
   KisCredentials,
   KisEnvironment,
-  KisWebsocketToken,
-  KisWebsocketTokenRequest,
 } from "../types";
 import { KisDomesticClient } from "./domestic";
 import { KisOverseasClient } from "./overseas";
@@ -131,8 +133,8 @@ export class KisClient {
   }
 
   async getWebsocketApprovalKey(
-    request: KisWebsocketTokenRequest = {},
-  ): Promise<KisWebsocketToken> {
+    request: RequestWebsocketApprovalKeyRequest = {},
+  ): Promise<RequestWebsocketApprovalKeyResponse> {
     return requestWebsocketApprovalKey(
       this.getHttp(),
       this.requireCredentials(),
