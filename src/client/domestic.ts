@@ -4,52 +4,52 @@ import {
     captureUplowprice,
     type CaptureUplowpriceRequest,
     type CaptureUplowpriceResponse,
-} from "../api/domestic-stock/quotations/capture-uplowprice";
+} from "../api/domestic/quotations/capture-uplowprice";
 import {
     checkHoliday,
     type CheckHolidayRequest,
     type CheckHolidayResponse,
-} from "../api/domestic-stock/quotations/check-holiday";
+} from "../api/domestic/quotations/check-holiday";
 import {
     fetchDailyCreditBalance,
     type DailyCreditBalanceRequest,
     type DailyCreditBalanceResponse,
-} from "../api/domestic-stock/quotations/daily-credit-balance";
+} from "../api/domestic/quotations/daily-credit-balance";
 import {
     searchInfo,
     type SearchInfoRequest,
     type SearchInfoResponse,
-} from "../api/domestic-stock/quotations/search-info";
+} from "../api/domestic/quotations/search-info";
 import {
     searchStockInfo,
     type SearchStockInfoRequest,
     type SearchStockInfoResponse,
-} from "../api/domestic-stock/quotations/search-stock-info";
+} from "../api/domestic/quotations/search-stock-info";
 import {
     fetchAfterHourBalance,
     type FetchAfterHourBalanceRequest,
     type FetchAfterHourBalanceResponse,
-} from "../api/domestic-stock/ranking/after-hour-balance";
+} from "../api/domestic/ranking/after-hour-balance";
 import {
     fetchBulkTransactionCount,
     type FetchBulkTransactionCountRequest,
     type FetchBulkTransactionCountResponse,
-} from "../api/domestic-stock/ranking/bulk-transaction-count";
+} from "../api/domestic/ranking/bulk-transaction-count";
 import {
     fetchCreditBalance,
     type FetchCreditBalanceRequest,
     type FetchCreditBalanceResponse,
-} from "../api/domestic-stock/ranking/credit-balance";
+} from "../api/domestic/ranking/credit-balance";
 import {
     inquirePsblOrder,
     type InquirePsblOrderRequest,
     type InquirePsblOrderResponse,
-} from "../api/domestic-stock/trading/inquire-psbl-order";
+} from "../api/domestic/trading/inquire-psbl-order";
 import {
     placeDomesticCashOrder,
     type PlaceDomesticCashOrderRequest,
     type PlaceDomesticCashOrderResponse,
-} from "../api/domestic-stock/trading/order-cash";
+} from "../api/domestic/trading/order-cash";
 
 /**
  * Client for Domestic Stock APIs.

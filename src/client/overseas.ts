@@ -4,102 +4,102 @@ import {
     fetchOverseasDailyPrice,
     type FetchOverseasDailyPriceRequest,
     type FetchOverseasDailyPriceResponse,
-} from "../api/overseas-stock/quotations/dailyprice";
+} from "../api/overseas/quotations/dailyprice";
 import {
     fetchOverseasPrice,
     type FetchOverseasPriceRequest,
     type FetchOverseasPriceResponse,
-} from "../api/overseas-stock/quotations/price";
+} from "../api/overseas/quotations/price";
 import {
     searchOverseasStock,
     type SearchOverseasStockRequest,
     type SearchOverseasStockResponse,
-} from "../api/overseas-stock/quotations/search-info";
+} from "../api/overseas/quotations/search-info";
 import {
     fetchOverseasMarketCapRanking,
     type FetchOverseasMarketCapRankingRequest,
     type FetchOverseasMarketCapRankingResponse,
-} from "../api/overseas-stock/ranking/market-cap";
+} from "../api/overseas/ranking/market-cap";
 import {
     fetchOverseasNewHighlow,
     type FetchOverseasNewHighlowRequest,
     type FetchOverseasNewHighlowResponse,
-} from "../api/overseas-stock/ranking/new-highlow";
+} from "../api/overseas/ranking/new-highlow";
 import {
     placeOverseasDaytimeOrder,
     type PlaceOverseasDaytimeOrderRequest,
     type PlaceOverseasDaytimeOrderResponse,
-} from "../api/overseas-stock/trading/daytime-order";
+} from "../api/overseas/trading/daytime-order";
 import {
     reviseCancelOverseasDaytimeOrder,
     type ReviseCancelOverseasDaytimeOrderRequest,
     type ReviseCancelOverseasDaytimeOrderResponse,
-} from "../api/overseas-stock/trading/daytime-order-rvsecncl";
+} from "../api/overseas/trading/daytime-order-rvsecncl";
 import {
     inquireOverseasBalance,
     type InquireOverseasBalanceRequest,
     type InquireOverseasBalanceResponse,
-} from "../api/overseas-stock/trading/inquire-balance";
+} from "../api/overseas/trading/inquire-balance";
 import {
     inquireOverseasCcnl,
     type InquireOverseasCcnlRequest,
     type InquireOverseasCcnlResponse,
-} from "../api/overseas-stock/trading/inquire-ccnl";
+} from "../api/overseas/trading/inquire-ccnl";
 import {
     inquireOverseasNccs,
     type InquireOverseasNccsRequest,
     type InquireOverseasNccsResponse,
-} from "../api/overseas-stock/trading/inquire-nccs";
+} from "../api/overseas/trading/inquire-nccs";
 import {
     inquireOverseasPaymtStdrBalance,
     type InquireOverseasPaymtStdrBalanceRequest,
     type InquireOverseasPaymtStdrBalanceResponse,
-} from "../api/overseas-stock/trading/inquire-paymt-stdr-balance";
+} from "../api/overseas/trading/inquire-paymt-stdr-balance";
 import {
     inquireOverseasPeriodProfit,
     type InquireOverseasPeriodProfitRequest,
     type InquireOverseasPeriodProfitResponse,
-} from "../api/overseas-stock/trading/inquire-period-profit";
+} from "../api/overseas/trading/inquire-period-profit";
 import {
     inquireOverseasPeriodTrans,
     type InquireOverseasPeriodTransRequest,
     type InquireOverseasPeriodTransResponse,
-} from "../api/overseas-stock/trading/inquire-period-trans";
+} from "../api/overseas/trading/inquire-period-trans";
 import {
     inquireOverseasPresentBalance,
     type InquireOverseasPresentBalanceRequest,
     type InquireOverseasPresentBalanceResponse,
-} from "../api/overseas-stock/trading/inquire-present-balance";
+} from "../api/overseas/trading/inquire-present-balance";
 import {
     inquireOverseasPsamount,
     type InquireOverseasPsamountRequest,
     type InquireOverseasPsamountResponse,
-} from "../api/overseas-stock/trading/inquire-psamount";
+} from "../api/overseas/trading/inquire-psamount";
 import {
     placeOverseasOrder,
     type PlaceOverseasOrderRequest,
     type PlaceOverseasOrderResponse,
-} from "../api/overseas-stock/trading/order";
+} from "../api/overseas/trading/order";
 import {
     placeOverseasReserveOrder,
     type PlaceOverseasReserveOrderRequest,
     type PlaceOverseasReserveOrderResponse,
-} from "../api/overseas-stock/trading/order-resv";
+} from "../api/overseas/trading/order-resv";
 import {
     cancelOverseasReserveOrder,
     type CancelOverseasReserveOrderRequest,
     type CancelOverseasReserveOrderResponse,
-} from "../api/overseas-stock/trading/order-resv-ccnl";
+} from "../api/overseas/trading/order-resv-ccnl";
 import {
     listOverseasReserveOrders,
     type ListOverseasReserveOrdersRequest,
     type ListOverseasReserveOrdersResponse,
-} from "../api/overseas-stock/trading/order-resv-list";
+} from "../api/overseas/trading/order-resv-list";
 import {
     reviseCancelOverseasOrder,
     type ReviseCancelOverseasOrderRequest,
     type ReviseCancelOverseasOrderResponse,
-} from "../api/overseas-stock/trading/order-rvsecncl";
+} from "../api/overseas/trading/order-rvsecncl";
 
 /**
  * Client for Overseas Stock APIs.

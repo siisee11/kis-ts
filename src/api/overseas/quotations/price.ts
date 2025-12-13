@@ -75,7 +75,7 @@ type OverseasPriceApiResponseBody = {
  * 해외주식종목의 현재체결가를 확인하는 API 입니다.
  * 해외주식 시세는 무료시세(지연체결가)만이 제공되며, API로는 유료시세(실시간체결가)를 받아보실 수 없습니다.
  *
- * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/price
+ * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-price/v1/quotations/price
  * 
  * @param ctx KIS Context
  * @param request 요청 정보 (거래소코드, 종목코드)

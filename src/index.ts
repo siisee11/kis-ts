@@ -1,5 +1,5 @@
-export * from "./api/domestic-stock";
-export * from "./api/overseas-stock";
+export * from "./api/domestic";
+export * from "./api/overseas";
 export * from "./client";
 export * from "./errors";
 export * from "./normalizers";
