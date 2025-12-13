@@ -1,6 +1,7 @@
 ## How to make JSDOC
 
-The official documentation of each API is available at https://apiportal.koreainvestment.com/apiservice-apiservice?[apiUrl] 
+The official documentation of each API is available at https://apiportal.koreainvestment.com/apiservice-apiservice?/[apiUrl] 
+(for example. https://apiportal.koreainvestment.com/apiservice-apiservice?/oauth2/tokenP)
 
 You can find api url on [implementation status](IMPLEMENTATION_STATUS.md).
 
