@@ -19,6 +19,12 @@ import type {
 import { KisDomesticClient } from "./domestic";
 import { KisOverseasClient } from "./overseas";
 
+/**
+ * KIS (Korea Investment & Securities) Client
+ *
+ * This client provides a convenient interface to interact with KIS APIs.
+ * It handles authentication, token management, and provides access to domestic and overseas stock APIs.
+ */
 export class KisClient {
   private appKey?: string;
   private appSecret?: string;
@@ -52,6 +58,13 @@ export class KisClient {
     this.overseas = new KisOverseasClient(this);
   }
 
+  /**
+   * Ensures a valid access token exists.
+   * If a token is already set, it returns it.
+   * Otherwise, it requests a new access token using the configured credentials.
+   *
+   * @returns {Promise<string>} The access token.
+   */
   async ensureAccessToken(): Promise<string> {
     if (this.accessToken) {
       return this.accessToken;
@@ -62,19 +75,40 @@ export class KisClient {
     return accessToken;
   }
 
+  /**
+   * Manually sets the access token.
+   * Useful if you want to manage the token externally.
+   *
+   * @param {string} token - The access token to set.
+   */
   setAccessToken(token: string) {
     this.accessToken = token;
   }
 
+  /**
+   * Gets the current access token value.
+   *
+   * @returns {string | undefined} The current access token, or undefined if not set.
+   */
   getAccessTokenValue(): string | undefined {
     return this.accessToken;
   }
 
+  /**
+   * Updates the client credentials.
+   *
+   * @param {KisCredentials} credentials - The new credentials (appKey, appSecret).
+   */
   setCredentials(credentials: KisCredentials) {
     this.appKey = credentials.appKey;
     this.appSecret = credentials.appSecret;
   }
 
+  /**
+   * Updates the environment (real or demo).
+   *
+   * @param {KisEnvironment} env - The new environment.
+   */
   setEnvironment(env: KisEnvironment) {
     this.env = ensureEnvironment(env);
   }
@@ -90,6 +124,15 @@ export class KisClient {
     return this.env === "real" ? this.realHttp : this.demoHttp;
   }
 
+  /**
+   * Gets the context required for calling overseas stock APIs.
+   *
+   * @param {string} accessToken - The access token to use.
+   * @param {object} options - Optional parameters.
+   * @param {string} [options.custType="P"] - Customer type ("P" for individual, "B" for business).
+   * @param {string} [options.hashKey] - Hash key for security (if required).
+   * @returns {KisOverseasContext} The context object for overseas API calls.
+   */
   getOverseasContext(
     accessToken: string,
     options: { custType?: "P" | "B"; hashKey?: string } = {},
@@ -107,6 +150,15 @@ export class KisClient {
     };
   }
 
+  /**
+   * Gets the context required for calling domestic stock APIs.
+   *
+   * @param {string} accessToken - The access token to use.
+   * @param {object} options - Optional parameters.
+   * @param {string} [options.custType="P"] - Customer type ("P" for individual, "B" for business).
+   * @param {string} [options.hashKey] - Hash key for security (if required).
+   * @returns {KisDomesticContext} The context object for domestic API calls.
+   */
   getDomesticContext(
     accessToken: string,
     options: { custType?: "P" | "B"; hashKey?: string } = {},
@@ -124,6 +176,12 @@ export class KisClient {
     };
   }
 
+  /**
+   * Requests a new access token from the KIS API.
+   *
+   * @param {KisAuthRequest} request - Optional request parameters.
+   * @returns {Promise<KisAuthToken>} The response containing the access token.
+   */
   async getAccessToken(request: KisAuthRequest = {}): Promise<KisAuthToken> {
     return requestAccessToken(
       this.getHttp(),
@@ -132,6 +190,12 @@ export class KisClient {
     );
   }
 
+  /**
+   * Requests a websocket approval key.
+   *
+   * @param {RequestWebsocketApprovalKeyRequest} request - Optional request parameters.
+   * @returns {Promise<RequestWebsocketApprovalKeyResponse>} The approval key response.
+   */
   async getWebsocketApprovalKey(
     request: RequestWebsocketApprovalKeyRequest = {},
   ): Promise<RequestWebsocketApprovalKeyResponse> {
