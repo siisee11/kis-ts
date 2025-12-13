@@ -1,4 +1,6 @@
 
+[KOR](README-KO.md)
+
 # @jasset/kis
 
 [![npm version](https://img.shields.io/npm/v/@jasset/kis.svg)](https://www.npmjs.com/package/@jasset/kis)
@@ -22,9 +24,6 @@ async function main() {
     appSecret: process.env.KIS_APP_SECRET,
     env: "demo", // or 'real'
   });
-
-  // 0. Auto-credential setup if using env vars
-  // client.setCredentials({ appKey: "...", appSecret: "..." });
 
   // 1. (Optional) Get Access Token manually
   // The client will automatically fetch and reuse the token if not set.
