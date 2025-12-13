@@ -104,21 +104,38 @@ import {
 /**
  * Client for Overseas Stock APIs.
  */
+/**
+ * Client for Overseas Stock APIs.
+ */
 export class KisOverseasClient {
-    constructor(private client: KisClient) { }
+    public quotations: KisOverseasQuotations;
+    public ranking: KisOverseasRanking;
+    public trading: KisOverseasTrading;
 
-    private async getContext() {
+    constructor(private client: KisClient) {
+        this.quotations = new KisOverseasQuotations(client);
+        this.ranking = new KisOverseasRanking(client);
+        this.trading = new KisOverseasTrading(client);
+    }
+}
+
+class KisOverseasContextBase {
+    constructor(protected client: KisClient) { }
+
+    protected async getContext() {
         const token = await this.client.ensureAccessToken();
         return this.client.getOverseasContext(token);
     }
+}
 
+export class KisOverseasQuotations extends KisOverseasContextBase {
     /**
      * Fetches daily price history for an overseas stock.
      *
      * @param {FetchOverseasDailyPriceRequest} request - The request parameters.
      * @returns {Promise<FetchOverseasDailyPriceResponse>} The daily price data.
      */
-    async fetchOverseasDailyPrice(request: FetchOverseasDailyPriceRequest): Promise<FetchOverseasDailyPriceResponse> {
+    async dailyPrice(request: FetchOverseasDailyPriceRequest): Promise<FetchOverseasDailyPriceResponse> {
         return fetchOverseasDailyPrice(await this.getContext(), request);
     }
 
@@ -133,7 +150,7 @@ export class KisOverseasClient {
      * @param {FetchOverseasPriceRequest} request - The request parameters (symbol, exchange).
      * @returns {Promise<FetchOverseasPriceResponse>} The current price data.
      */
-    async fetchOverseasPrice(request: FetchOverseasPriceRequest): Promise<FetchOverseasPriceResponse> {
+    async price(request: FetchOverseasPriceRequest): Promise<FetchOverseasPriceResponse> {
         return fetchOverseasPrice(await this.getContext(), request);
     }
 
@@ -145,17 +162,19 @@ export class KisOverseasClient {
      * @param {string} request.pdno - 상품번호 (예: AAPL)
      * @returns {Promise<SearchOverseasStockResponse>} The search results.
      */
-    async searchOverseasStock(request: SearchOverseasStockRequest): Promise<SearchOverseasStockResponse> {
+    async searchInfo(request: SearchOverseasStockRequest): Promise<SearchOverseasStockResponse> {
         return searchOverseasStock(await this.getContext(), request);
     }
+}
 
+export class KisOverseasRanking extends KisOverseasContextBase {
     /**
      * Fetches overseas market cap ranking.
      *
      * @param {FetchOverseasMarketCapRankingRequest} request - The request parameters.
      * @returns {Promise<FetchOverseasMarketCapRankingResponse>} The market cap ranking.
      */
-    async fetchOverseasMarketCapRanking(request: FetchOverseasMarketCapRankingRequest): Promise<FetchOverseasMarketCapRankingResponse> {
+    async marketCap(request: FetchOverseasMarketCapRankingRequest): Promise<FetchOverseasMarketCapRankingResponse> {
         return fetchOverseasMarketCapRanking(await this.getContext(), request);
     }
 
@@ -165,17 +184,19 @@ export class KisOverseasClient {
      * @param {FetchOverseasNewHighlowRequest} request - The request parameters.
      * @returns {Promise<FetchOverseasNewHighlowResponse>} The new high/low ranking.
      */
-    async fetchOverseasNewHighlow(request: FetchOverseasNewHighlowRequest): Promise<FetchOverseasNewHighlowResponse> {
+    async newHighLow(request: FetchOverseasNewHighlowRequest): Promise<FetchOverseasNewHighlowResponse> {
         return fetchOverseasNewHighlow(await this.getContext(), request);
     }
+}
 
+export class KisOverseasTrading extends KisOverseasContextBase {
     /**
      * Places a daytime order for overseas stock.
      *
      * @param {PlaceOverseasDaytimeOrderRequest} request - The order parameters.
      * @returns {Promise<PlaceOverseasDaytimeOrderResponse>} The order result.
      */
-    async placeOverseasDaytimeOrder(request: PlaceOverseasDaytimeOrderRequest): Promise<PlaceOverseasDaytimeOrderResponse> {
+    async daytimeOrder(request: PlaceOverseasDaytimeOrderRequest): Promise<PlaceOverseasDaytimeOrderResponse> {
         return placeOverseasDaytimeOrder(await this.getContext(), request);
     }
 
@@ -185,7 +206,7 @@ export class KisOverseasClient {
      * @param {ReviseCancelOverseasDaytimeOrderRequest} request - The request parameters.
      * @returns {Promise<ReviseCancelOverseasDaytimeOrderResponse>} The result.
      */
-    async reviseCancelOverseasDaytimeOrder(request: ReviseCancelOverseasDaytimeOrderRequest): Promise<ReviseCancelOverseasDaytimeOrderResponse> {
+    async daytimeOrderRvsecncl(request: ReviseCancelOverseasDaytimeOrderRequest): Promise<ReviseCancelOverseasDaytimeOrderResponse> {
         return reviseCancelOverseasDaytimeOrder(await this.getContext(), request);
     }
 
@@ -195,7 +216,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasBalanceRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasBalanceResponse>} The balance information.
      */
-    async inquireOverseasBalance(request: InquireOverseasBalanceRequest): Promise<InquireOverseasBalanceResponse> {
+    async inquireBalance(request: InquireOverseasBalanceRequest): Promise<InquireOverseasBalanceResponse> {
         return inquireOverseasBalance(await this.getContext(), request);
     }
 
@@ -205,7 +226,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasCcnlRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasCcnlResponse>} The concluded orders.
      */
-    async inquireOverseasCcnl(request: InquireOverseasCcnlRequest): Promise<InquireOverseasCcnlResponse> {
+    async inquireCcnl(request: InquireOverseasCcnlRequest): Promise<InquireOverseasCcnlResponse> {
         return inquireOverseasCcnl(await this.getContext(), request);
     }
 
@@ -215,7 +236,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasNccsRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasNccsResponse>} The non-concluded orders.
      */
-    async inquireOverseasNccs(request: InquireOverseasNccsRequest): Promise<InquireOverseasNccsResponse> {
+    async inquireNccs(request: InquireOverseasNccsRequest): Promise<InquireOverseasNccsResponse> {
         return inquireOverseasNccs(await this.getContext(), request);
     }
 
@@ -225,7 +246,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasPaymtStdrBalanceRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasPaymtStdrBalanceResponse>} The payment standard balance.
      */
-    async inquireOverseasPaymtStdrBalance(request: InquireOverseasPaymtStdrBalanceRequest): Promise<InquireOverseasPaymtStdrBalanceResponse> {
+    async inquirePaymtStdrBalance(request: InquireOverseasPaymtStdrBalanceRequest): Promise<InquireOverseasPaymtStdrBalanceResponse> {
         return inquireOverseasPaymtStdrBalance(await this.getContext(), request);
     }
 
@@ -235,7 +256,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasPeriodProfitRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasPeriodProfitResponse>} The period profit data.
      */
-    async inquireOverseasPeriodProfit(request: InquireOverseasPeriodProfitRequest): Promise<InquireOverseasPeriodProfitResponse> {
+    async inquirePeriodProfit(request: InquireOverseasPeriodProfitRequest): Promise<InquireOverseasPeriodProfitResponse> {
         return inquireOverseasPeriodProfit(await this.getContext(), request);
     }
 
@@ -245,7 +266,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasPeriodTransRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasPeriodTransResponse>} The transaction history.
      */
-    async inquireOverseasPeriodTrans(request: InquireOverseasPeriodTransRequest): Promise<InquireOverseasPeriodTransResponse> {
+    async inquirePeriodTrans(request: InquireOverseasPeriodTransRequest): Promise<InquireOverseasPeriodTransResponse> {
         return inquireOverseasPeriodTrans(await this.getContext(), request);
     }
 
@@ -255,7 +276,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasPresentBalanceRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasPresentBalanceResponse>} The present balance.
      */
-    async inquireOverseasPresentBalance(request: InquireOverseasPresentBalanceRequest): Promise<InquireOverseasPresentBalanceResponse> {
+    async inquirePresentBalance(request: InquireOverseasPresentBalanceRequest): Promise<InquireOverseasPresentBalanceResponse> {
         return inquireOverseasPresentBalance(await this.getContext(), request);
     }
 
@@ -265,7 +286,7 @@ export class KisOverseasClient {
      * @param {InquireOverseasPsamountRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasPsamountResponse>} The possible order amount.
      */
-    async inquireOverseasPsamount(request: InquireOverseasPsamountRequest): Promise<InquireOverseasPsamountResponse> {
+    async inquirePsamount(request: InquireOverseasPsamountRequest): Promise<InquireOverseasPsamountResponse> {
         return inquireOverseasPsamount(await this.getContext(), request);
     }
 
@@ -275,7 +296,7 @@ export class KisOverseasClient {
      * @param {PlaceOverseasOrderRequest} request - The order parameters.
      * @returns {Promise<PlaceOverseasOrderResponse>} The order result.
      */
-    async placeOverseasOrder(request: PlaceOverseasOrderRequest): Promise<PlaceOverseasOrderResponse> {
+    async order(request: PlaceOverseasOrderRequest): Promise<PlaceOverseasOrderResponse> {
         return placeOverseasOrder(await this.getContext(), request);
     }
 
@@ -285,7 +306,7 @@ export class KisOverseasClient {
      * @param {PlaceOverseasReserveOrderRequest} request - The reserve order parameters.
      * @returns {Promise<PlaceOverseasReserveOrderResponse>} The reserve order result.
      */
-    async placeOverseasReserveOrder(request: PlaceOverseasReserveOrderRequest): Promise<PlaceOverseasReserveOrderResponse> {
+    async orderResv(request: PlaceOverseasReserveOrderRequest): Promise<PlaceOverseasReserveOrderResponse> {
         return placeOverseasReserveOrder(await this.getContext(), request);
     }
 
@@ -295,7 +316,7 @@ export class KisOverseasClient {
      * @param {CancelOverseasReserveOrderRequest} request - The cancellation parameters.
      * @returns {Promise<CancelOverseasReserveOrderResponse>} The cancellation result.
      */
-    async cancelOverseasReserveOrder(request: CancelOverseasReserveOrderRequest): Promise<CancelOverseasReserveOrderResponse> {
+    async orderResvCcnl(request: CancelOverseasReserveOrderRequest): Promise<CancelOverseasReserveOrderResponse> {
         return cancelOverseasReserveOrder(await this.getContext(), request);
     }
 
@@ -305,7 +326,7 @@ export class KisOverseasClient {
      * @param {ListOverseasReserveOrdersRequest} request - The request parameters.
      * @returns {Promise<ListOverseasReserveOrdersResponse>} The list of reserve orders.
      */
-    async listOverseasReserveOrders(request: ListOverseasReserveOrdersRequest): Promise<ListOverseasReserveOrdersResponse> {
+    async orderResvList(request: ListOverseasReserveOrdersRequest): Promise<ListOverseasReserveOrdersResponse> {
         return listOverseasReserveOrders(await this.getContext(), request);
     }
 
@@ -315,7 +336,7 @@ export class KisOverseasClient {
      * @param {ReviseCancelOverseasOrderRequest} request - The request parameters.
      * @returns {Promise<ReviseCancelOverseasOrderResponse>} The result.
      */
-    async reviseCancelOverseasOrder(request: ReviseCancelOverseasOrderRequest): Promise<ReviseCancelOverseasOrderResponse> {
+    async orderRvsecncl(request: ReviseCancelOverseasOrderRequest): Promise<ReviseCancelOverseasOrderResponse> {
         return reviseCancelOverseasOrder(await this.getContext(), request);
     }
 }

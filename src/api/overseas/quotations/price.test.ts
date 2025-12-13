@@ -27,7 +27,7 @@ describe("fetchOverseasPrice", () => {
         };
 
         // Call via client.overseas
-        const response = await client.overseas.fetchOverseasPrice(request);
+        const response = await client.overseas.quotations.price(request);
 
         expect(response.rt_cd).toBe("0");
         expect(response.msg_cd).toBe("MCA00000");

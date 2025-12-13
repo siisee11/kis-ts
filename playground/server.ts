@@ -109,7 +109,7 @@ app.post("/overseas/balance", async (c) => {
   const client = createKisClient({ appKey, appSecret, env });
 
   try {
-    const result = await client.overseas.inquireOverseasBalance({
+    const result = await client.overseas.trading.inquireBalance({
       cano: body.cano,
       acntPrdtCd: body.acntPrdtCd,
       ovrsExcgCd: body.ovrsExcgCd,
@@ -143,7 +143,7 @@ app.post("/overseas/order", async (c) => {
   const client = createKisClient({ appKey, appSecret, env });
 
   try {
-    const result = await client.overseas.placeOverseasOrder({
+    const result = await client.overseas.trading.order({
       cano: body.cano,
       acntPrdtCd: body.acntPrdtCd,
       ovrsExcgCd: body.ovrsExcgCd,
@@ -214,7 +214,7 @@ app.post("/overseas/price", async (c) => {
   const client = createKisClient({ appKey, appSecret, env: "real" });
 
   try {
-    const result = await client.overseas.fetchOverseasPrice({
+    const result = await client.overseas.quotations.price({
       excd: body.excd,
       symb: body.symb.trim().toUpperCase(),
     });
@@ -249,7 +249,7 @@ app.post("/overseas/daily-price", async (c) => {
   const client = createKisClient({ appKey, appSecret, env: "real" });
 
   try {
-    const result = await client.overseas.fetchOverseasDailyPrice({
+    const result = await client.overseas.quotations.dailyPrice({
       excd: body.excd,
       symb: body.symb.trim().toUpperCase(),
       gubn: "0",
@@ -281,7 +281,7 @@ app.post("/overseas/search", async (c) => {
   const client = createKisClient({ appKey, appSecret, env: "real" });
 
   try {
-    const result = await client.overseas.searchOverseasStock({
+    const result = await client.overseas.quotations.searchInfo({
       prdtTypeCd: "512",
       pdno: body.keyword?.trim() ?? "",
     });
