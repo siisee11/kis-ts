@@ -14,7 +14,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build:playground": "vite build --config playground/vite.config.ts",
     "preview": "vite preview --config playground/vite.config.ts",
-    "prepublishOnly": "bun run build",
+    "prepublishOnly": "npm run build",
     "test": "vitest"
   },
   "files": [
