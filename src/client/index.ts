@@ -1,7 +1,8 @@
 import axios, { type AxiosInstance } from "axios";
-import { requestAccessToken, requestWebsocketApprovalKey } from "../api/auth";
+import { requestWebsocketApprovalKey } from "../api/oauth2/Approval";
+import { requestAccessToken } from "../api/oauth2/tokenP";
 import type { KisDomesticContext } from "../api/domestic-stock";
-import type { KisOverseasContext } from "../api/overseas";
+import type { KisOverseasContext } from "../api/overseas-stock";
 import { ensureCredentials, ensureEnvironment, resolveBaseUrl } from "../auth";
 import { KisError } from "../errors";
 import type {
