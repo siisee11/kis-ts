@@ -16,6 +16,11 @@ import {
     type SearchOverseasStockResponse,
 } from "../api/overseas/quotations/search-info";
 import {
+    inquireOverseasTimeItemChartPrice,
+    type InquireOverseasTimeItemChartPriceRequest,
+    type InquireOverseasTimeItemChartPriceResponse,
+} from "../api/overseas/quotations/inquire-time-itemchartprice";
+import {
     fetchOverseasMarketCapRanking,
     type FetchOverseasMarketCapRankingRequest,
     type FetchOverseasMarketCapRankingResponse,
@@ -164,6 +169,21 @@ export class KisOverseasQuotations extends KisOverseasContextBase {
      */
     async searchInfo(request: SearchOverseasStockRequest): Promise<SearchOverseasStockResponse> {
         return searchOverseasStock(await this.getContext(), request);
+    }
+
+    /**
+     * 해외주식분봉조회[v1_해외주식-030]
+     *
+     * 해외주식분봉조회 API입니다. 실전계좌의 경우, 한 번의 호출에 최근 120건까지 확인 가능합니다.
+     * NEXT 및 KEYB 값을 사용하여 데이터를 계속해서 다음 조회할 수 있으며, 최대 다음조회 가능 기간은 약 1개월입니다.
+     *
+     * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/inquire-time-itemchartprice
+     *
+     * @param {InquireOverseasTimeItemChartPriceRequest} request - The request parameters.
+     * @returns {Promise<InquireOverseasTimeItemChartPriceResponse>} The minute chart price data.
+     */
+    async inquireTimeItemChartPrice(request: InquireOverseasTimeItemChartPriceRequest): Promise<InquireOverseasTimeItemChartPriceResponse> {
+        return inquireOverseasTimeItemChartPrice(await this.getContext(), request);
     }
 }
 
