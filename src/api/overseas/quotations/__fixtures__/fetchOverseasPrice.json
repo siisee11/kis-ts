@@ -1,41 +1,41 @@
 [
-    {
-        "scope": "https://openapi.koreainvestment.com:9443",
-        "method": "GET",
-        "path": "/uapi/overseas-price/v1/quotations/price?AUTH=&EXCD=NAS&SYMB=AAPL",
-        "body": "",
-        "status": 200,
-        "response": {
-            "output": {
-                "rsym": "DNASAAPL",
-                "zdiv": "4",
-                "base": "278.0300",
-                "pvol": "33247986",
-                "last": "278.2800",
-                "sign": "2",
-                "diff": "0.2500",
-                "rate": "+0.09",
-                "tvol": "39532887",
-                "tamt": "11087314555",
-                "ordy": "매도불가"
-            },
-            "rt_cd": "0",
-            "msg_cd": "MCA00000",
-            "msg1": "정상처리 되었습니다."
-        },
-        "rawHeaders": {
-            "connection": "close",
-            "content-length": "269",
-            "content-type": "application/json",
-            "date": "Sat, 13 Dec 2025 07:21:06 GMT",
-            "gt_uid": "4a707aacd7f411f0aa72cf29fb9eb9d9",
-            "tr_cont": "",
-            "tr_id": "HHDFS00000300",
-            "x-content-type-options": "nosniff",
-            "x-oracle-dms-ecid": "006HT0sgNboFw0zzzR06zzEjX2E0jYYz30005ef00dCFB",
-            "x-oracle-dms-rid": "0:1",
-            "x-xss-protection": "1; mode=block"
-        },
-        "responseIsBinary": false
-    }
+  {
+    "scope": "https://openapi.koreainvestment.com:9443",
+    "method": "GET",
+    "path": "/uapi/overseas-price/v1/quotations/price?AUTH=&EXCD=NAS&SYMB=AAPL",
+    "body": "",
+    "status": 200,
+    "response": {
+      "output": {
+        "rsym": "DNASAAPL",
+        "zdiv": "4",
+        "base": "278.0300",
+        "pvol": "33247986",
+        "last": "278.2800",
+        "sign": "2",
+        "diff": "0.2500",
+        "rate": "+0.09",
+        "tvol": "39532887",
+        "tamt": "11087314555",
+        "ordy": "매도불가"
+      },
+      "rt_cd": "0",
+      "msg_cd": "MCA00000",
+      "msg1": "정상처리 되었습니다."
+    },
+    "rawHeaders": {
+      "connection": "close",
+      "content-length": "269",
+      "content-type": "application/json",
+      "date": "Sat, 13 Dec 2025 07:21:06 GMT",
+      "gt_uid": "4a707aacd7f411f0aa72cf29fb9eb9d9",
+      "tr_cont": "",
+      "tr_id": "HHDFS00000300",
+      "x-content-type-options": "nosniff",
+      "x-oracle-dms-ecid": "006HT0sgNboFw0zzzR06zzEjX2E0jYYz30005ef00dCFB",
+      "x-oracle-dms-rid": "0:1",
+      "x-xss-protection": "1; mode=block"
+    },
+    "responseIsBinary": false
+  }
 ]

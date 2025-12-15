@@ -1,6 +1,5 @@
 import { type KisOverseasContext, overseasGet, toArray } from "../helpers";
 
-
 export type FetchOverseasPriceRequest = {
   /**
    * 거래소코드
@@ -76,7 +75,7 @@ type OverseasPriceApiResponseBody = {
  * 해외주식 시세는 무료시세(지연체결가)만이 제공되며, API로는 유료시세(실시간체결가)를 받아보실 수 없습니다.
  *
  * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-price/v1/quotations/price
- * 
+ *
  * @param ctx KIS Context
  * @param request 요청 정보 (거래소코드, 종목코드)
  * @returns 현재가 정보

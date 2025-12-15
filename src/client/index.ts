@@ -129,9 +129,7 @@ export class KisClient {
    * @param {string} accessToken - The access token to use.
    * @returns {KisOverseasContext} The context object for overseas API calls.
    */
-  getContext(
-    accessToken: string,
-  ): KisOverseasContext {
+  getContext(accessToken: string): KisOverseasContext {
     if (!accessToken?.trim()) {
       throw new KisError("accessToken is required to call overseas APIs.");
     }

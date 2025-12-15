@@ -34,5 +34,3 @@ export type KisAuthToken = {
 export type KisAuthTokenResponse = {
   token: KisAuthToken;
 };
-
-

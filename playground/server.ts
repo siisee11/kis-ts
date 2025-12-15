@@ -27,15 +27,15 @@ type OrderPayload = AuthPayload & {
   cano: string;
   acntPrdtCd: string;
   ovrsExcgCd:
-  | "NASD"
-  | "NYSE"
-  | "AMEX"
-  | "SEHK"
-  | "SHAA"
-  | "SZAA"
-  | "TKSE"
-  | "HASE"
-  | "VNSE";
+    | "NASD"
+    | "NYSE"
+    | "AMEX"
+    | "SEHK"
+    | "SHAA"
+    | "SZAA"
+    | "TKSE"
+    | "HASE"
+    | "VNSE";
   pdno: string;
   ordQty: string;
   ovrsOrdUnpr: string;

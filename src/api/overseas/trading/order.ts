@@ -10,7 +10,7 @@ export type PlaceOverseasOrderRequest = {
   acntPrdtCd: string;
   /**
    * 해외거래소코드
-   * 
+   *
    * NASD: 나스닥
    * NYSE: 뉴욕
    * AMEX: 아멕스
@@ -22,15 +22,15 @@ export type PlaceOverseasOrderRequest = {
    * VNSE: 호치민
    */
   ovrsExcgCd:
-  | "NASD"
-  | "NYSE"
-  | "AMEX"
-  | "SEHK"
-  | "SHAA"
-  | "SZAA"
-  | "TKSE"
-  | "HASE"
-  | "VNSE";
+    | "NASD"
+    | "NYSE"
+    | "AMEX"
+    | "SEHK"
+    | "SHAA"
+    | "SZAA"
+    | "TKSE"
+    | "HASE"
+    | "VNSE";
   /** 상품번호 (종목코드) */
   pdno: string;
   /** 주문수량 */
@@ -47,7 +47,7 @@ export type PlaceOverseasOrderRequest = {
   ordSvrDvsnCd?: string;
   /**
    * 주문구분
-   * 
+   *
    * 00: 지정가
    * LOO: 장개시지정가
    * LOC: 장마감지정가
@@ -91,15 +91,15 @@ const resolveOverseasOrderTrId = (
 
 /**
  * 해외주식 주문[v1_해외주식-001]
- * 
+ *
  * 해외주식 주문 API입니다.
- * 
+ *
  * * 모의투자의 경우, 모든 해외 종목 매매가 지원되지 않습니다. 일부 종목만 매매 가능한 점 유의 부탁드립니다.
  * * 해외주식 서비스 신청 후 이용 가능합니다.
  * * 해외 거래소 운영시간 외 API 호출 시 에러가 발생하오니 운영시간을 확인해주세요.
- * 
+ *
  * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-stock/v1/trading/order
- * 
+ *
  * @param ctx KIS Context
  * @param request 주문 요청 정보
  * @returns 주문 결과
