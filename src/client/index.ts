@@ -5,7 +5,6 @@ import {
   type RequestWebsocketApprovalKeyResponse,
 } from "../api/oauth2/Approval";
 import { requestAccessToken } from "../api/oauth2/tokenP";
-import type { KisDomesticContext } from "../api/domestic";
 import type { KisOverseasContext } from "../api/overseas";
 import { ensureCredentials, ensureEnvironment, resolveBaseUrl } from "../auth";
 import { KisError } from "../errors";
