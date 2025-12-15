@@ -59,7 +59,7 @@ export class KisDomesticClient {
 
     private async getContext() {
         const token = await this.client.ensureAccessToken();
-        return this.client.getDomesticContext(token);
+        return this.client.getContext(token);
     }
 
     /**

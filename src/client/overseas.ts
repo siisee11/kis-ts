@@ -129,16 +129,21 @@ class KisOverseasContextBase {
 
     protected async getContext() {
         const token = await this.client.ensureAccessToken();
-        return this.client.getOverseasContext(token);
+        return this.client.getContext(token);
     }
 }
 
 export class KisOverseasQuotations extends KisOverseasContextBase {
     /**
-     * Fetches daily price history for an overseas stock.
+     * 해외주식 기간별시세 [v1_해외주식-010]
      *
-     * @param {FetchOverseasDailyPriceRequest} request - The request parameters.
-     * @returns {Promise<FetchOverseasDailyPriceResponse>} The daily price data.
+     * 해외주식의 기간별시세를 확인하는 API 입니다.
+     * 실전계좌/모의계좌의 경우, 한 번의 호출에 최대 100건까지 확인 가능합니다.
+     *
+     * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-price/v1/quotations/dailyprice
+     *
+     * @param request 요청 정보 (거래소코드, 종목코드, 기간분류 등)
+     * @returns 기간별 시세 정보
      */
     async dailyPrice(request: FetchOverseasDailyPriceRequest): Promise<FetchOverseasDailyPriceResponse> {
         return fetchOverseasDailyPrice(await this.getContext(), request);
@@ -150,7 +155,7 @@ export class KisOverseasQuotations extends KisOverseasContextBase {
      * 해외주식종목의 현재체결가를 확인하는 API 입니다.
      * 해외주식 시세는 무료시세(지연체결가)만이 제공되며, API로는 유료시세(실시간체결가)를 받아보실 수 없습니다.
      *
-     * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/price
+     * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-price/v1/quotations/price
      *
      * @param {FetchOverseasPriceRequest} request - The request parameters (symbol, exchange).
      * @returns {Promise<FetchOverseasPriceResponse>} The current price data.
@@ -177,7 +182,7 @@ export class KisOverseasQuotations extends KisOverseasContextBase {
      * 해외주식분봉조회 API입니다. 실전계좌의 경우, 한 번의 호출에 최근 120건까지 확인 가능합니다.
      * NEXT 및 KEYB 값을 사용하여 데이터를 계속해서 다음 조회할 수 있으며, 최대 다음조회 가능 기간은 약 1개월입니다.
      *
-     * @see https://openapi.koreainvestment.com:9443/uapi/overseas-price/v1/quotations/inquire-time-itemchartprice
+     * @see https://apiportal.koreainvestment.com/apiservice-apiservice?/uapi/overseas-price/v1/quotations/inquire-time-itemchartprice
      *
      * @param {InquireOverseasTimeItemChartPriceRequest} request - The request parameters.
      * @returns {Promise<InquireOverseasTimeItemChartPriceResponse>} The minute chart price data.

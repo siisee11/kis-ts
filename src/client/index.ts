@@ -128,14 +128,10 @@ export class KisClient {
    * Gets the context required for calling overseas stock APIs.
    *
    * @param {string} accessToken - The access token to use.
-   * @param {object} options - Optional parameters.
-   * @param {string} [options.custType="P"] - Customer type ("P" for individual, "B" for business).
-   * @param {string} [options.hashKey] - Hash key for security (if required).
    * @returns {KisOverseasContext} The context object for overseas API calls.
    */
-  getOverseasContext(
+  getContext(
     accessToken: string,
-    options: { custType?: "P" | "B"; hashKey?: string } = {},
   ): KisOverseasContext {
     if (!accessToken?.trim()) {
       throw new KisError("accessToken is required to call overseas APIs.");
@@ -145,34 +141,6 @@ export class KisClient {
       http: this.getHttp(),
       credentials: this.requireCredentials(),
       accessToken: accessToken.trim(),
-      custType: options.custType,
-      hashKey: options.hashKey,
-    };
-  }
-
-  /**
-   * Gets the context required for calling domestic stock APIs.
-   *
-   * @param {string} accessToken - The access token to use.
-   * @param {object} options - Optional parameters.
-   * @param {string} [options.custType="P"] - Customer type ("P" for individual, "B" for business).
-   * @param {string} [options.hashKey] - Hash key for security (if required).
-   * @returns {KisDomesticContext} The context object for domestic API calls.
-   */
-  getDomesticContext(
-    accessToken: string,
-    options: { custType?: "P" | "B"; hashKey?: string } = {},
-  ): KisDomesticContext {
-    if (!accessToken?.trim()) {
-      throw new KisError("accessToken is required to call domestic APIs.");
-    }
-
-    return {
-      http: this.getHttp(),
-      credentials: this.requireCredentials(),
-      accessToken: accessToken.trim(),
-      custType: options.custType,
-      hashKey: options.hashKey,
     };
   }
 
